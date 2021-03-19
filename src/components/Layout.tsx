@@ -1,10 +1,11 @@
 import React from 'react';
 import LayoutBox from 'styles/components/LayoutBox';
-// import Header from 'Components/Main/Header';
+import Header from 'components/Main/Header';
 
 const Layout: React.FC = ({ children }) => {
   return (
     <LayoutBox>
+      <Header/>
       {children}
     </LayoutBox>
   );
