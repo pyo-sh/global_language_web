@@ -10,10 +10,14 @@ type itemOption = {
 
 const items: itemOption = {
     한국어: "kor",
+    English: "eng",
 };
 
 const renderItem = (lang: string, key: number) => {
-    return <button key={key}>
+    return <button
+        className="Language-Item"
+        key={key}
+        >
         {lang}
     </button>
 }
@@ -39,19 +43,30 @@ const SelectLanguage: React.FC = () => {
     }
 
     return <>
-        <SelectLanguageBox onClick={clickBox}>
-            <div>
+        <SelectLanguageBox>
+            <button
+                className="LanguageBox-Button"
+                onClick={clickBox}
+                >
                 {Object.keys(items).filter(element => items[element] === language)}
-            </div>
-            <div></div>
+                <span
+                    className={
+                        "LanguageBox-Triangle "
+                        + (isOpen
+                            ? "LanguageBox-Activate"
+                            : "LanguageBox-Deactivate"
+                    )}
+                    >
+                </span>
+            </button>
+            {isOpen &&
+            <SelectItems onClick={clickItem}>
+                { Object.keys(items).map((element, index) => (
+                    renderItem(element, index)
+                )) }
+            </SelectItems>
+            }
         </SelectLanguageBox>
-        {isOpen &&
-        <SelectItems onClick={clickItem}>
-            { Object.keys(items).map((element, index) => (
-                renderItem(element, index)
-            )) }
-        </SelectItems>
-        }
     </>
 }
 

@@ -8,6 +8,9 @@ catch{
     isCommercial = false;
 }
 
+// Words are delivered by Array (Easy Rewrite)
+// We will use it as Object
+
 const ArrayToObject = (keys, values) => {
     if (keys.length != values.length)
         return null;
