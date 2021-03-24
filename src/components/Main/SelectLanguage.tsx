@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "reducers/index";
 import { ACTIONS } from "reducers/user";
-import SelectLanguageBox, { SelectItems } from 'styles/components/Main/SelectLanguageBox';
+import SelectLanguageBox from 'styles/components/Main/SelectLanguageBox';
 
 type itemOption = {
     [key: string]: string
@@ -15,7 +15,7 @@ const items: itemOption = {
 
 const renderItem = (lang: string, key: number) => {
     return <button
-        className="Language-Item"
+        className="LanguageBox-Item"
         key={key}
         >
         {lang}
@@ -27,45 +27,35 @@ const SelectLanguage: React.FC = () => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const clickBox = () => {
-        setIsOpen((prev) => !prev)
-    }
-
     const clickItem: React.MouseEventHandler<HTMLDivElement> = (event) => {
         const {tagName, innerHTML} = event.target as HTMLButtonElement;
-        
         if (tagName === "BUTTON"){
             dispatch(ACTIONS.changeLanguageAction({
                 language: items[innerHTML],
             }));
-            setIsOpen(false);
         }
     }
 
     return <>
-        <SelectLanguageBox>
-            <button
-                className="LanguageBox-Button"
-                onClick={clickBox}
+        <SelectLanguageBox
+            isOpen={isOpen}
+            >
+            <button className="LanguageBox-Button"
+                onFocus={() => setIsOpen(true)}
+                onBlur={() => setIsOpen(false)}
                 >
-                {Object.keys(items).filter(element => items[element] === language)}
-                <span
-                    className={
-                        "LanguageBox-Triangle "
-                        + (isOpen
-                            ? "LanguageBox-Activate"
-                            : "LanguageBox-Deactivate"
-                    )}
-                    >
+                <span>
+                    {Object.keys(items).filter(element => items[element] === language)}
                 </span>
             </button>
-            {isOpen &&
-            <SelectItems onClick={clickItem}>
+            <div
+                className="LanguageBox-Items"
+                onClick={clickItem}
+                >
                 { Object.keys(items).map((element, index) => (
                     renderItem(element, index)
                 )) }
-            </SelectItems>
-            }
+            </div>
         </SelectLanguageBox>
     </>
 }
