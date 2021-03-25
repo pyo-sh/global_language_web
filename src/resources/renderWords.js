@@ -21,38 +21,39 @@ const ArrayToObject = (keys, values) => {
     }, {})
 }
 
-export const menuWords = (lang) => {
+export const menuWords = (index, lang) => {
+    index = (index + 3) % 4 + 1;
     const keys = [
-        'menu_1',
-        'menu_2',
-        'menu_3',
-        'menu_4'
+        'title',
+        'childs',
     ];
+
     let values
     if (isCommercial && lang) {
-        values = require(`sources/words/${lang}.js`).menuWords
+        const this_module = require(`sources/words/${lang}.js`);
+        values = this_module[`mainMenu_${index}`];
     }
     else {
         switch(lang){
             case 'eng':
                 values = [
-                    'Menu1',
-                    'Menu2',
-                    'Menu3',
-                    'Menu4'
+                    `Menu${index}`,
+                    'Sub1',
+                    'Sub2',
+                    'Sub3'
                 ];
                 break;
             case 'kor':
             default:
                 values = [
-                    '메뉴1',
-                    '메뉴2',
-                    '메뉴3',
-                    '메뉴4'
+                    `메뉴${index}`,
+                    '서브1',
+                    '서브2',
+                    '서브3'
                 ];
                 break;
         }
     }
 
-    return ArrayToObject(keys, values);
+    return ArrayToObject(keys, [values[0], values.slice(1)]);
 }
