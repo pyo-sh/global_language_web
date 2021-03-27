@@ -13,6 +13,7 @@ const FooterBox = styled.div`
         height: 40px;
         margin: 20px 0 50px 0;
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
     }
     span {
