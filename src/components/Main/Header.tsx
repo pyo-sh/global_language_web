@@ -7,8 +7,11 @@ import { menuWords } from 'resources/renderWords';
 
 const renderContents = (array: Array<string>) => {
     return<div className="HeaderMenu-Contents">
-    {array.map((element) => {
-        return <div className="HeaderMenu-Content">
+    {array.map((element, index) => {
+        return <div
+            className="HeaderMenu-Content"
+            key={index}
+            >
             {element}
         </div>
     })}
