@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { Color } from 'Contant';
 
-const FooterBox = styled.p`
+const FooterBox = styled.div`
     width: 100vw;
-    height: 40px;
 
     display: flex;
     justify-content: center;
@@ -11,6 +10,8 @@ const FooterBox = styled.p`
     p {
         max-width: 965px;
         width: 100%;
+        height: 40px;
+        margin: 20px 0 50px 0;
         display: flex;
         flex-wrap: wrap;
     }
