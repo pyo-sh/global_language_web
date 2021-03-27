@@ -49,37 +49,7 @@ export const MenuBox = styled.button`
     }
 `;
 
-const itemHeight = 205;
-const itemHeight2 = 46;
 export const MenuContentBox = styled.div<{ isOpen: boolean }>`
-    @keyframes bounce {
-        0% {
-            height: 0;
-        }
-        40% {
-            height: ${itemHeight * 1.2}px;
-        }
-        60%{
-            height: ${itemHeight * 0.9}px;
-        }
-        80% {
-            height: ${itemHeight * 1.1}px;
-        }
-    }
-    @keyframes bounce2 {
-        0% {
-            height: 0;
-        }
-        40% {
-            height: ${itemHeight2 * 1.2}px;
-        }
-        60%{
-            height: ${itemHeight2 * 0.9}px;
-        }
-        80% {
-            height: ${itemHeight2 * 1.1}px;
-        }
-    }
 
     width: 100vw;
     min-width: 965px;
@@ -126,12 +96,10 @@ export const MenuContentBox = styled.div<{ isOpen: boolean }>`
     ${props => props.isOpen && `
         height: auto;
         opacity: 1;
-        animation: bounce 0.7s 1 alternate;
         
         .HeaderMenu-Content {
             height: auto;
             padding-top: 25px;
-            animation: bounce2 0.7s 1 alternate;
         }
     `}
 `;

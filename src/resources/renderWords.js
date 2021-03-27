@@ -57,3 +57,84 @@ export const menuWords = (index, lang) => {
 
     return ArrayToObject(keys, [values[0], values.slice(1)]);
 }
+
+export const footerWords = (lang) => {
+    const keys = [
+        'author',
+        'register',
+        'phone',
+        'email',
+        'fax',
+    ];
+
+    let values;
+    switch(lang){
+        case 'eng':
+            values = [
+                'author',
+                'version',
+                'phone',
+                'email',
+                'fax',
+            ];
+            break;
+        case 'kor':
+        default:
+            values = [
+                '대표자',
+                '사업자등록번호',
+                '전화번호',
+                '이메일',
+                '팩스'
+            ];
+            break;
+    }
+    return ArrayToObject(keys, values);
+}
+
+
+export const projectWords = (lang) => {
+    const keys = [
+        'name',
+        'location',
+        'author',
+        'register',
+        'phone',
+        'email',
+        'fax',
+    ];
+
+    let values
+    if (isCommercial && lang) {
+        const this_module = require(`sources/words/${lang}.js`);
+        values = this_module.project;
+    }
+    else {
+        switch(lang){
+            case 'eng':
+                values = [
+                    'name',
+                    'location',
+                    'author',
+                    'register',
+                    'phone',
+                    'email',
+                    'fax',
+                ];
+                break;
+            case 'kor':
+            default:
+                values = [
+                    '이름',
+                    '위치',
+                    '작자',
+                    '등록번호',
+                    '전화번호',
+                    '이메일',
+                    '팩스'
+                ];
+                break;
+        }
+    }
+    return ArrayToObject(keys, values);
+}
