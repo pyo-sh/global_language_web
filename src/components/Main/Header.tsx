@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import HeaderBox, { MenuBox, MenuContentBox } from 'styles/components/Main/HeaderBox';
+import HeaderBox, { MenuBox, MenuContentBox, MenuBackground } from 'styles/components/Main/HeaderBox';
 import SelectLanguage from 'components/Main/SelectLanguage';
 
 import { logoImage } from 'resources/renderImages';
 import { menuWords } from 'resources/renderWords';
 
-const renderContents = (array: Array<string>) => {
-    return<div className="HeaderMenu-Contents">
+const renderContents = (array: Array<string>, isOpen: boolean) => {
+    return <MenuContentBox isOpen={isOpen}>
     {array.map((element, index) => {
-        return <div
+        return <li
             className="HeaderMenu-Content"
             key={index}
             >
             {element}
-        </div>
+        </li>
     })}
-    </div>
+    </MenuContentBox>
 }
 
 const Header: React.FC = () => {
@@ -25,28 +25,37 @@ const Header: React.FC = () => {
     const menu_3 = menuWords(3, 'kor');
     const menu_4 = menuWords(4, 'kor');
 
+    const onHoverOpen = () => {
+        setIsOpen(true);
+    }
+
     return <HeaderBox>
         <img
             className="Header-Logo"
             src={logoImage()}
             />
         <MenuBox
-            onFocus={() => setIsOpen(true)}
-            onBlur={() => setIsOpen(false)}
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
             >
-            <div className="HeaderMenu-Title"> {menu_1.title} </div>
-            <div className="HeaderMenu-Title"> {menu_2.title} </div>
-            <div className="HeaderMenu-Title"> {menu_3.title} </div>
-            <div className="HeaderMenu-Title"> {menu_4.title} </div>
+            <li className="HeaderMenu-Item">
+                <a className="HeaderMenu-Title">{menu_1.title}</a>
+                {renderContents(menu_1.childs, isOpen)}
+            </li>
+            <li className="HeaderMenu-Item">
+                <a className="HeaderMenu-Title">{menu_2.title}</a>
+                {renderContents(menu_2.childs, isOpen)}
+            </li>
+            <li className="HeaderMenu-Item">
+                <a className="HeaderMenu-Title">{menu_3.title}</a>
+                {renderContents(menu_3.childs, isOpen)}
+            </li>
+            <li className="HeaderMenu-Item">
+                <a className="HeaderMenu-Title">{menu_4.title}</a>
+                {renderContents(menu_4.childs, isOpen)}
+            </li>
+            <MenuBackground isOpen={isOpen}/>
         </MenuBox>
-        <MenuContentBox
-            isOpen={isOpen}
-            >
-            {renderContents(menu_1.childs)}
-            {renderContents(menu_2.childs)}
-            {renderContents(menu_3.childs)}
-            {renderContents(menu_4.childs)}
-        </MenuContentBox>
         <SelectLanguage/>
     </HeaderBox>
 }

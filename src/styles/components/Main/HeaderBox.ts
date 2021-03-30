@@ -11,97 +11,119 @@ const HeaderBox = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    border-bottom: 1px solid ${Color.mid_gray};
+    /* border-bottom: 1px solid ${Color.mid_gray}; */
 
     .Header-Logo {
         height: 60px;
     }
 `;
 
-export const MenuBox = styled.button`
+const listStyle = `
+    list-style: none;
     padding: 0;
     margin: 0;
-    border: none;
-    outline: none;
-    background: none;
+`;
+
+export const MenuBox = styled.ul`
+    ${listStyle}
 
     display: flex;
     align-items: center;
     height: 100%;
 
-    .HeaderMenu-Title {
-        width: 150px;
-        padding-right: 50px;
-        margin-right: 50px;
+    .HeaderMenu-Item {
+        height: 100%;
 
         text-align: center;
         font-size: 22px;
 
-        :first-child {
-            margin-left: 0;
-        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        :last-child {
-            width: 100px;
-            padding: 0;
-            margin-right: 0;
-        }
+    .HeaderMenu-Title {
+        width: 200px;
+        padding: 25px 40px 25px 40px;
     }
 `;
 
-export const MenuContentBox = styled.div<{ isOpen: boolean }>`
-
-    width: 100vw;
-    min-width: 965px;
-    padding: 0 30px 0 30px;
-    margin-top: 80px;
-
+let isFirst = false;
+const display_animation = (isOpen: boolean): string => {
+    isFirst = isFirst || isOpen;
+    return `
+        animation-name: ${isOpen ? 'slidedown' : (isFirst ? 'slideup' : ' ')};
+        animation-duration: 0.6s;
+        animation-direction: alternate;
+        animation-iteration-count: 1;
+        animation-play-state: 'running';
+        animation-fill-mode: both;
+    `;
+}
+export const MenuContentBox = styled.ul<{ isOpen : boolean }>`
+    ${listStyle}
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 80px;
+    z-index: 2;
 
-    display: flex;
-    justify-content: center;
-
-    height: 0px;
-    opacity: 0;
-    transition: height, opacity 250ms cubic-bezier(0.3, 0, 0.7, 1);
-
-    .HeaderMenu-Contents {
-        display: block;
-        width: 150px;
-        padding: 0 50px 0 0;
-        margin-right: 50px;
-
-        text-align: center;
-
-        :first-child {
-            margin-left: 0;
-        }
-
-        :last-child {
-            width: 100px;
-            padding-right: 0;
-            margin-right: 35px;
-        }
-    }
     .HeaderMenu-Content {
+        padding-top: 25px;
         font-size: 15px;
 
-        height: 0px;
-        padding: 0px;
-        transition: all 250ms cubic-bezier(0.3, 0, 0.7, 1);
+        :last-child {
+            padding-bottom: 25px
+        }
     }
 
-    ${props => props.isOpen && `
-        height: auto;
-        opacity: 1;
-        
-        .HeaderMenu-Content {
-            height: auto;
-            padding-top: 25px;
+    @keyframes slidedown {
+        0% {
+            display: none;
+            height: 0;
         }
-    `}
+        1%{
+            display: block;
+            height: 1%;
+        }
+        100%{
+            display: block;
+            height: 205px;
+        }
+    }
+    @keyframes slideup{
+        0%{
+            display: block;
+            height: 205px;
+        }
+        99%{
+            display: block;
+            height: 0;
+        }
+        100% {
+            display: none;
+            height: 0;
+        }
+    }
+    height: 0px;
+    overflow: hidden;
+    ${props => display_animation(props.isOpen)}
+
+    /* animation: slidedown 0.7s 2 alternate both running; */
+    /* transition: height, opacity 250ms cubic-bezier(0.3, 0, 0.7, 1); */
+    /* height: 205px */
+`;
+
+export const MenuBackground = styled.div<{ isOpen : boolean }>`
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    z-index: 1;
+
+    height: 0;
+    overflow: hidden;
+    ${props => display_animation(props.isOpen)}
+
+    /* border: 1px solid black; */
 `;
 
 export default HeaderBox;
