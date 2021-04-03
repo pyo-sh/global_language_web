@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { Color } from 'Contant';
 
 const HeaderBox = styled.div`
-    width: 100vw;
+    min-width: 1065px;
+    width: 100%;
     height: 80px;
     padding: 0 30px;
     z-index: 3;

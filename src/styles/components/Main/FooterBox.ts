@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Color } from 'Contant';
 
 const FooterBox = styled.div`
-    width: 100vw;
+    width: 100%;
 
     display: flex;
     justify-content: center;
