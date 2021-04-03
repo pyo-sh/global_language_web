@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { Color } from 'Contant';
+import { Color, min_width } from 'Contant';
 
 const FooterBox = styled.div`
+    min-width: ${min_width};
     width: 100%;
 
     display: flex;

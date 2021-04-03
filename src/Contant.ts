@@ -17,3 +17,5 @@ export const Color = {
 	primary_light: "#CBE3EE",
 	primary_easy: "#E0EEF7",
 }
+
+export const min_width = '1065px';

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Color } from 'Contant';
+import { Color, min_width } from 'Contant';
 
 const HeaderBox = styled.div`
-    min-width: 1065px;
+    min-width: ${min_width};
     width: 100%;
     height: 80px;
     padding: 0 30px;
