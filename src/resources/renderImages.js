@@ -11,3 +11,7 @@ catch{
 export const logoImage = () => {
     return isCommercial ? require("sources/images/logo.png") : "/logo.png";
 }
+
+export const mainImage = () => {
+    return isCommercial ? require("sources/images/main.png") : "/main.png";
+}

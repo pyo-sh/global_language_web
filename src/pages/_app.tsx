@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Layout from 'components/Layout';
 import GlobalStyle from 'styles/GlobalStyle';
 import configureStore from 'reducers/configureStore';
+import { titleWord } from 'resources/renderWords';
 
 const store = configureStore();
 
@@ -12,7 +13,9 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compo
     return <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>TitleName</title>
+        <title>{titleWord('kor')}</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet"/>
       </Head>
       <GlobalStyle/>
       <Provider store={store}>

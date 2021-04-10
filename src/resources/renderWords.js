@@ -21,6 +21,26 @@ const ArrayToObject = (keys, values) => {
     }, {})
 }
 
+export const titleWord = (lang) => {
+    let value;
+    if (isCommercial && lang){
+        const this_module = require(`sources/words/${lang}.js`);
+        value = this_module.titleWord;
+    }
+    else {
+        switch(lang){
+            case 'eng':
+                value = 'TitleName';
+                break;
+            case 'kor':
+            default:
+                value = '페이지이름'
+                break;
+        }
+    }
+    return value
+}
+
 export const menuWords = (index, lang) => {
     index = (index + 3) % 4 + 1;
     const keys = [
@@ -132,6 +152,39 @@ export const projectWords = (lang) => {
                     '전화번호',
                     '이메일',
                     '팩스'
+                ];
+                break;
+        }
+    }
+    return ArrayToObject(keys, values);
+}
+
+export const mainIntroduceWord = (lang) => {
+    const keys = [
+        'title_1',
+        'title_2',
+        'content'
+    ];
+    let values;
+    if (isCommercial && lang){
+        const this_module = require(`sources/words/${lang}.js`);
+        values = this_module.mainIntroduceWord;
+    }
+    else {
+        switch(lang){
+            case 'eng':
+                values = [
+                    'A new model for',
+                    'open collaboration',
+                    'Run an organization where members get rewarded for their contributions with fractional ownership.',
+                ];
+                break;
+            case 'kor':
+            default:
+                values = [
+                    "전세계적인 언어",
+                    "따라가는 홈페이지",
+                    "글로벌 언어를 지원하는 홈페이지를 만드는 것은 고달픈 것입니다. 상업적인 것을 숨기기 위해 두 번을 고려해야 하는 홈페이지입니다."
                 ];
                 break;
         }
