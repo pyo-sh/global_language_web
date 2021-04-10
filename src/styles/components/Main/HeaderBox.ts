@@ -36,7 +36,7 @@ export const MenuBox = styled.ul`
         height: 100%;
 
         text-align: center;
-        font-size: 22px;
+        font-size: 1.2rem;
 
         display: flex;
         justify-content: center;
@@ -44,8 +44,8 @@ export const MenuBox = styled.ul`
     }
 
     .HeaderMenu-Title {
-        width: 200px;
-        padding: 25px 40px 25px 40px;
+        width: 120px;
+        padding: 25px 8px;
     }
 `;
 

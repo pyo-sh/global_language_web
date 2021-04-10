@@ -4,6 +4,8 @@ import SelectLanguage from 'components/Main/SelectLanguage';
 
 import { logoImage } from 'resources/renderImages';
 import { menuWords } from 'resources/renderWords';
+import Router from 'next/router';
+import Link from 'next/link';
 
 const renderContents = (array: Array<string>, isOpen: boolean) => {
     return <MenuContentBox isOpen={isOpen}>
@@ -39,11 +41,15 @@ const Header: React.FC = () => {
             onMouseLeave={() => setIsOpen(false)}
             >
             <li className="HeaderMenu-Item">
-                <a className="HeaderMenu-Title">{menu_1.title}</a>
+                <a className="HeaderMenu-Title">
+                    {menu_1.title}
+                </a>
                 {renderContents(menu_1.childs, isOpen)}
             </li>
             <li className="HeaderMenu-Item">
-                <a className="HeaderMenu-Title">{menu_2.title}</a>
+                <Link href="/username">
+                    <a className="HeaderMenu-Title">{menu_2.title}</a>
+                </Link>
                 {renderContents(menu_2.childs, isOpen)}
             </li>
             <li className="HeaderMenu-Item">
